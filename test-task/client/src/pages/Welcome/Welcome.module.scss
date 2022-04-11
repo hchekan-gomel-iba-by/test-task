@@ -1,0 +1,16 @@
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  .message {
+    font-size: 30px;
+    border: 1px solid black;
+    border-radius: 15px;
+    color: #424242;
+    padding: 15px 25px;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+  }
+}

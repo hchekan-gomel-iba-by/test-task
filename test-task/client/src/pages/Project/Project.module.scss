@@ -1,0 +1,14 @@
+.error {
+  display:flex;
+  justify-content: center;
+  font-size: 22px;
+  color: rgb(255, 0, 0);
+}
+
+.centered {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+}
