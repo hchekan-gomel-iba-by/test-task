@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
 
-import styles from './WithLoadingDelay.module.scss';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const withLoadingDelay = (WrappedComponent) => {
 
@@ -9,10 +9,10 @@ const withLoadingDelay = (WrappedComponent) => {
     useEffect(() => {
       const timer = setTimeout(() => {
         setLoad(false);
-      }, 2000);
+      }, 1000);
       return () => clearTimeout(timer);
     }, []);
-    return load ? <div className={styles.loader}/> : <WrappedComponent {...props}/>;
+    return load ? <LoadingSpinner /> : <WrappedComponent {...props}/>;
   };
 };
 

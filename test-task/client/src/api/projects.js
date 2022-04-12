@@ -5,11 +5,11 @@ export default {
 
   getProjectById: (projectId) => axios.get(`/projects/${projectId}`),
 
-  createProject: (project) => axios.post(`/projects/`, project),
+  createProject: (project) => axios.post(`/projects`, project),
 
   updateProject: (projectId, project) =>
-    axios.post(`/project/${projectId}`, project),
+    axios.put(`/projects/${projectId}`, project),
 
   deleteProject: (projectId) =>
-    axios.delete(`/project/${projectId}`),
+    axios.delete(`/projects/${projectId}`),
 };

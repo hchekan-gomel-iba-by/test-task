@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { TextField } from "@mui/material";
 
@@ -17,10 +17,11 @@ const CustomDateField = ({
   enteredValue,
   typeCheck,
   onChangeInput,
+  disabled,
 }) => {
   const classes = useStyles();
   const [isTouched, setIsTouched] = useState(false);
-  const checkIsValid = (type, value) => 
+  const checkIsValid = (type, value) =>
     type === "isNotCheck" ? true : check(type, value);
 
   const hasError = !checkIsValid(typeCheck, enteredValue) && isTouched;
@@ -32,6 +33,9 @@ const CustomDateField = ({
       event.target.value
     );
   };
+  useEffect(() => {
+    onChangeInput(name, checkIsValid(typeCheck, enteredValue), enteredValue);
+  }, []);
 
   const handleBlur = (event) => {
     setIsTouched(true);
@@ -49,6 +53,7 @@ const CustomDateField = ({
       onChange={valueChangeHandler}
       onBlur={handleBlur}
       error={hasError}
+      disabled={disabled}
     />
   );
 };

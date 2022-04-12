@@ -3,7 +3,6 @@ const User = db.users;
 const ProjectUser = db.projectsUsers;
 
 exports.create = (req, res) => {
-
   const user = new User({
     username: req.body.username,
     email: req.body.email,
@@ -11,28 +10,25 @@ exports.create = (req, res) => {
     role: req.body.role,
   });
 
-  User
-    .create(user)
-    .then(data => {
+  User.create(user)
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the User."
+        message: err.message || "Some error occurred while creating the User.",
       });
     });
 };
 
 exports.findAll = (req, res) => {
   User.find({})
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Users."
+        message: err.message || "Some error occurred while retrieving Users.",
       });
     });
 };
@@ -41,15 +37,13 @@ exports.findOne = (req, res) => {
   const id = req.params.id;
 
   User.findById(id)
-    .then(data => {
+    .then((data) => {
       if (!data)
         res.status(404).send({ message: "Not found User with id " + id });
       else res.send(data);
     })
-    .catch(err => {
-      res
-        .status(500)
-        .send({ message: "Error retrieving User with id=" + id });
+    .catch((err) => {
+      res.status(500).send({ message: "Error retrieving User with id=" + id });
     });
 };
 
@@ -57,38 +51,38 @@ exports.update = (req, res) => {
   const id = req.params.id;
 
   User.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
-    .then(data => {
+    .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot update User with id=${id}. Maybe User was not found!`
+          message: `Cannot update User with id=${id}. Maybe User was not found!`,
         });
       } else res.send({ message: "User was updated successfully." });
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message: "Error updating User with id=" + id
+        message: "Error updating User with id=" + id,
       });
     });
 };
 
 exports.delete = (req, res) => {
-  const id = req.params.id;
+  const idUser = req.params.id;
 
-  User.findByIdAndRemove(id, { useFindAndModify: false })
-    .then(data => {
+  User.deleteOne({ _id: idUser })
+    .then((data) => {
       if (!data) {
         res.status(404).send({
-          message: `Cannot delete User with id=${id}. Maybe User was not found!`
+          message: `Cannot delete User with id=${idUser}. Maybe User was not found!`,
         });
       } else {
         res.send({
-          message: "User was deleted successfully!"
+          message: "User was deleted successfully!",
         });
       }
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message: "Could not delete User with id=" + id
+        message: "Could not delete User with id=" + idUser,
       });
     });
 };
@@ -96,13 +90,12 @@ exports.delete = (req, res) => {
 exports.findAllProjects = (req, res) => {
   const idUser = req.params.idUser;
   ProjectUser.find({ id_user: idUser })
-    .then(data => {
+    .then((data) => {
       res.send(data);
     })
-    .catch(err => {
+    .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Users."
+        message: err.message || "Some error occurred while retrieving Users.",
       });
     });
 };

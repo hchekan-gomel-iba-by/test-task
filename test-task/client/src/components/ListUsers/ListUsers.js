@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import OutlinedInput from "@mui/material/OutlinedInput";
@@ -43,14 +42,21 @@ const ListUsers = ({ users, userName, setUserName }) => {
     <div>
       <div>
         <FormControl sx={{ m: 1, width: 300 }}>
-          <InputLabel id="demo-multiple-chip-label">users on the project</InputLabel>
+          <InputLabel id="demo-multiple-chip-label">
+            users on the project
+          </InputLabel>
           <Select
             labelId="demo-multiple-chip-label"
             id="demo-multiple-chip"
             multiple
             value={userName}
             onChange={handleChange}
-            input={<OutlinedInput id="select-multiple-chip" label="users on the project" />}
+            input={
+              <OutlinedInput
+                id="select-multiple-chip"
+                label="users on the project"
+              />
+            }
             renderValue={(selected) => (
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 0.5 }}>
                 {selected.map((value) => (
